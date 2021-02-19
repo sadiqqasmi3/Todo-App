@@ -8,12 +8,15 @@
 import UIKit
 
 class TableViewController: UITableViewController {
-
+    
     var itemArray = [Item]()
     //let defaults = UserDefaults.standard
+    
+    let filePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Todo.plist")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(filePath)
         let newItem = Item()
         newItem.title = "hhee"
         newItem.done = true
@@ -26,14 +29,17 @@ class TableViewController: UITableViewController {
         let newItem2 = Item()
         newItem2.title = "22jif"
         itemArray.append(newItem2)
-//        if let item = defaults.array(forKey: "Todo list") as? [String]{
-//            itemArray = item
-//        }
+        
+        getData()
+        
+        //        if let item = defaults.array(forKey: "Todo list") as? [String]{
+        //            itemArray = item
+        //        }
     }
-
+    
     // MARK: - Table view data source
-
-
+    
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
@@ -46,7 +52,7 @@ class TableViewController: UITableViewController {
         cell.accessoryType = itemArray[indexPath.row].done ? .checkmark : .none
         
         return cell
-        }
+    }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(itemArray[indexPath.row].title)
         
@@ -54,7 +60,8 @@ class TableViewController: UITableViewController {
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        tableView.reloadData()
+        saveData()
+        
     }
     
     @IBAction func addButton(_ sender: UIBarButtonItem) {
@@ -67,11 +74,11 @@ class TableViewController: UITableViewController {
             let newItem = Item()
             newItem.title = textField.text!
             
+            saveData()
+            
             itemArray.append(newItem)
             
-            //defaults.set(itemArray, forKey: "Todo list")
             
-            tableView.reloadData()
         }
         alert.addAction(action)
         alert.addTextField { (textfield) in
@@ -82,51 +89,74 @@ class TableViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    func saveData(){
+        let encoder = PropertyListEncoder()
+        do{
+            let data = try encoder.encode(itemArray)
+            try data.write(to: filePath!)
+        }catch{
+            print(error)
+        }
+        
+        //defaults.set(itemArray, forKey: "Todo list")
+        tableView.reloadData()
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    func getData(){
+        if let data = try? Data(contentsOf: filePath!){
+            let decoder = PropertyListDecoder()
+            do{
+                itemArray = try decoder.decode([Item].self, from: data)
+            }catch{
+            print(error)
+            }
+        }
+        
     }
-    */
-
     /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
+     // Override to support conditional editing of the table view.
+     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the specified item to be editable.
+     return true
+     }
+     */
+    
     /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
+     // Override to support editing the table view.
+     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+     if editingStyle == .delete {
+     // Delete the row from the data source
+     tableView.deleteRows(at: [indexPath], with: .fade)
+     } else if editingStyle == .insert {
+     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+     }
+     }
+     */
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // Override to support rearranging the table view.
+     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+     
+     }
+     */
+    
+    /*
+     // Override to support conditional rearranging of the table view.
+     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the item to be re-orderable.
+     return true
+     }
+     */
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 
