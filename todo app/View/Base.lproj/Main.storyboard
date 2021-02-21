@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Todo app-->
+        <!--Items-->
         <scene sceneID="o8q-Ks-qf0">
             <objects>
                 <tableViewController id="AkQ-ae-bYl" customClass="TableViewController" customModule="todo_app" customModuleProvider="target" sceneMemberID="viewController">
@@ -38,7 +38,7 @@
                             <outlet property="delegate" destination="AkQ-ae-bYl" id="uWi-ZB-zhG"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Todo app" id="9ps-dy-UhF">
+                    <navigationItem key="navigationItem" title="Items" id="9ps-dy-UhF">
                         <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="YXe-he-cDC">
                             <connections>
                                 <action selector="addButton:" destination="AkQ-ae-bYl" id="rRJ-RU-Voh"/>
@@ -48,7 +48,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nIf-Yw-Uu4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1100" y="131.91964285714286"/>
+            <point key="canvasLocation" x="1732" y="132"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wpM-RN-KBx">
@@ -58,21 +58,69 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="24j-DL-kmL">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" systemColor="systemOrangeColor"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" systemColor="systemBlueColor"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="AkQ-ae-bYl" kind="relationship" relationship="rootViewController" id="g0g-5N-ept"/>
+                        <segue destination="vhv-OI-HE3" kind="relationship" relationship="rootViewController" id="maI-hp-T5z"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vfx-IS-iuZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="189.85507246376812" y="131.91964285714286"/>
         </scene>
+        <!--Todo App-->
+        <scene sceneID="Fic-ia-VCy">
+            <objects>
+                <tableViewController id="vhv-OI-HE3" customClass="CategoryTableViewController" customModule="todo_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5Jl-5w-VYu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="categoryCell" id="JE6-JL-MI5">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JE6-JL-MI5" id="K6P-Wf-PcX">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="vhv-OI-HE3" id="Ddy-wZ-zc6"/>
+                            <outlet property="delegate" destination="vhv-OI-HE3" id="wpS-oL-8TM"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Todo App" id="Ilc-ub-Eem">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="lZh-tf-3dt">
+                            <connections>
+                                <action selector="addButtonPressed:" destination="vhv-OI-HE3" id="Exl-lT-y6v"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="AkQ-ae-bYl" kind="show" identifier="toItems" id="VNg-d7-GwI"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ctH-qE-Aka" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="936" y="132"/>
+        </scene>
     </scenes>
     <resources>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

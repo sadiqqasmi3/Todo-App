@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B24BDFE25E1EBF20004F1CB /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B24BDFD25E1EBF20004F1CB /* CategoryTableViewController.swift */; };
 		1B7BAA4725DB8A150075A929 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7BAA4625DB8A150075A929 /* AppDelegate.swift */; };
 		1B7BAA4925DB8A150075A929 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7BAA4825DB8A150075A929 /* SceneDelegate.swift */; };
 		1B7BAA4E25DB8A150075A929 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B7BAA4C25DB8A150075A929 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B24BDFD25E1EBF20004F1CB /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		1B7BAA4325DB8A150075A929 /* todo app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "todo app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B7BAA4625DB8A150075A929 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B7BAA4825DB8A150075A929 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				1B7BAA5E25DB8B0B0075A929 /* TableViewController.swift */,
+				1B24BDFD25E1EBF20004F1CB /* CategoryTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 			files = (
 				1B7BAA4725DB8A150075A929 /* AppDelegate.swift in Sources */,
 				1B7BAA4925DB8A150075A929 /* SceneDelegate.swift in Sources */,
+				1B24BDFE25E1EBF20004F1CB /* CategoryTableViewController.swift in Sources */,
 				1B7BAA5F25DB8B0B0075A929 /* TableViewController.swift in Sources */,
 				1B7BAA5125DB8A150075A929 /* todo_app.xcdatamodeld in Sources */,
 			);
